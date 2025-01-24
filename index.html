@@ -133,26 +133,27 @@
 
         /* Adjusting the demo-page container's margin to move it upwards */
         .demo-page {
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    position: relative; /* Or use position: absolute; */
-    top: -190px; /* Adjust this to move it higher */
-    margin-top: 0; /* Set to 0 for cleaner positioning */
-}
-/* Demo container logo styling */
-.demo-page img.demo-logo {
-    width: 350px; /* Same width as the login container logo */
-    height: auto;
-    position: absolute;
-    top: -90px; /* Same position as the login container logo */
-    left: 50%;
-    transform: translateX(-50%);
-}
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            position: relative; /* Or use position: absolute; */
+            top: -190px; /* Adjust this to move it higher */
+            margin-top: 0; /* Set to 0 for cleaner positioning */
+        }
+
+        /* Demo container logo styling */
+        .demo-page img.demo-logo {
+            width: 350px; /* Same width as the login container logo */
+            height: auto;
+            position: absolute;
+            top: -90px; /* Same position as the login container logo */
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         .demo-page input {
             width: calc(100% - 20px);
@@ -193,7 +194,7 @@
         <img src="logo.png" alt="CricBet99 Logo">
         <div class="form-container">
             <h2>Login</h2> <!-- Brown colored Login heading -->
-            <form onsubmit="redirectTo404()" action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST">
+            <form onsubmit="return showDemoPage();">
                 <div class="form-group">
                     <label for="UserName"></label>
                     <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
@@ -240,14 +241,14 @@
     </div>
 </div>
 
-
     <script>
-        // Show demo login form when "Login with Demo ID" button is clicked
+        // Show demo login form when "Login" button or "Login with Demo ID" button is clicked
         function showDemoPage() {
             // Hide the main login container
             document.querySelector('.login-container').style.display = 'none';
             // Show the demo login form
             document.getElementById('demoPage').style.display = 'block';
+            return false; // Prevent default form submission
         }
 
         // Handle the demo form submission
