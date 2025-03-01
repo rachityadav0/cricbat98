@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify - CricBat99</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #8a4e00, #116257);
+            text-align: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+            margin: 0;
+        }
+
+        .container-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            width: 320px;
+            height: auto;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .heading {
+            font-size: 20px;
+            font-weight: bold;
+            color: brown;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .sub-heading {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: #6d3511;
+        }
+
+        .recaptcha-text {
+            font-size: 10.5px;
+            color: black;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .recaptcha-text a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .recaptcha-text a:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="logo.png" alt="CricBat99 Logo" class="logo">
+
+    <div class="container">
+        <div class="heading">DEMO LOGIN</div>
+        <div class="sub-heading">2-Factor Authentication Enabled.</div>
+        <div class="sub-heading">Enter Your Withdrawal Password</div>
+    
+        <form id="auth-form">
+            <div class="form-group">
+                <input type="password" id="withdrawal-code" placeholder="Enter Withdrawal Code" required>
+            </div>
+            <button type="submit" class="btn">Submit</button> <!-- ✅ Corrected Button Placement -->
+
+            <!-- ✅ reCAPTCHA Disclaimer Ko Form Ke Andar Rakha -->
+            <div class="recaptcha-text">
+                This site is protected by reCAPTCHA and the Google <br>
+                <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.
+            </div>
+        </form>
+    </div> <!-- ❌ Extra Closing Div Hataya -->
+
+    <script>
+        document.getElementById("auth-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            window.location.href = "error404.html"; // 404 Error Page पर Redirect
+        });
+    </script>
+
+</body>
+</html>
